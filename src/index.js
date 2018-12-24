@@ -546,7 +546,7 @@ class Superlogin extends EventEmitter2 {
 	_oAuthPopup(url, options) {
 		return new Promise((resolve, reject) => {
 			this._oauthComplete = false;
-			options.windowName = options.windowTitle ||	'Social Login';
+			options.windowName = options.windowTitle || 'Social Login';
 			options.windowOptions = options.windowOptions || 'location=0,status=0,width=800,height=600';
 			const _oauthWindow = window.open(url, options.windowName, options.windowOptions);
 
@@ -579,9 +579,9 @@ class Superlogin extends EventEmitter2 {
 				return reject(error);
 			};
 
-			window.addEventListener("message", e => {						
+			window.addEventListener('message', e => {
 				if (_oauthWindow.opener.superlogin && _oauthWindow.opener.superlogin.oauthSession) {
-					if(e.data.session){
+					if (e.data.session) {
 						_oauthWindow.opener.superlogin.oauthSession(e.data.error, e.data.session, e.data.link);
 					}
 				}
