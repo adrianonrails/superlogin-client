@@ -578,6 +578,14 @@ class Superlogin extends EventEmitter2 {
 				this._oauthComplete = true;
 				return reject(error);
 			};
+
+			window.addEventListener("message", e => {						
+				if (_oauthWindow.opener.superlogin && _oauthWindow.opener.superlogin.oauthSession) {
+					if(e.data.session){
+						_oauthWindow.opener.superlogin.oauthSession(e.data.error, e.data.session, e.data.link);
+					}
+				}
+			});
 		});
 	}
 
